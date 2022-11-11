@@ -43,7 +43,20 @@ public class TodoRepo {
 //
 //        return null;
 //    }
+    public TodoElement changeStatus(int id) {
+        
+        for (TodoElement element: todoElements) {
+            element.stat
+        if(!todoElements.get(id).equals(todoElement)){
+                //todoElements.get(id).description = todoElement.description;
+                //todoElements.get(id).status = todoElement.status;
+                todoElements.set(id,todoElement);
+                return todoElement;
+            }
+        }
 
+        return null;
+    }
     public String readTodo(int id) {
         for (TodoElement element: todoElements) {
             if(element.getId()==id){
@@ -52,5 +65,15 @@ public class TodoRepo {
             }
         }
         return null;
+    }
+
+    public boolean deleteTodo(int id) {
+        for (TodoElement element: todoElements) {
+            if(element.getId()==id){
+
+                return todoElements.remove(element);
+            }
+        }
+        return false;
     }
 }

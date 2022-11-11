@@ -24,7 +24,7 @@ public class TodoController {
         return todoService.getAllTodos();
 
     }
-    @GetMapping("/{id}")
+    @GetMapping("/todo/{id}")
     public TodoElement getTodo(@RequestBody @PathVariable int id){
         return todoService.getTodo(id);
     }
@@ -35,11 +35,15 @@ public class TodoController {
 //        return todoService.readTodo(id);
 //
 //    }
-//    @PutMapping("/edit/{id}")
-//    public TodoElement editTodo(@RequestBody TodoElement todoElement, @PathVariable int id){
-//        return todoService.editTodo(todoElement, id);
-//
-//    }
+    @PutMapping("/todo/{id}")
+   public TodoElement editTodo(@RequestBody TodoElement todoElement, @PathVariable int id){
+        return todoService.editTodo(todoElement, id);
 
+    }
+    @DeleteMapping ("/todo/{id}")
+    public boolean deleteTodo(@RequestBody @PathVariable int id){
+        return todoService.deleteTodo(id);
+
+    }
 
 }

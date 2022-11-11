@@ -21,9 +21,9 @@ public class TodoService {
         return todoRepo.getAllTodos();
     }
 //    TODO AENDERN
-//    public TodoElement editTodo(TodoElement todoElement, int id) {
-//        return todoRepo.editTodo(todoElement, id);
-//    }
+    public TodoElement editTodo(TodoElement todoElement, int id) {
+        return todoRepo.editTodo(todoElement, id);
+    }
     //TODO DESCRIPTION GUCKEN
     public TodoElement getTodo(int id){
         return todoRepo.getTodo(id);
@@ -31,5 +31,9 @@ public class TodoService {
 
     public String readTodo(int id) {
         return todoRepo.readTodo(id);
+    }
+
+    public boolean deleteTodo(int id) {
+        return todoRepo.deleteTodo(id);
     }
 }
