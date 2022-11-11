@@ -3,6 +3,7 @@ package com.example.backend;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class TodoRepo {
@@ -14,52 +15,30 @@ public class TodoRepo {
     }
 
     public TodoElement addTodo(TodoElement todoElement){
-        todoElements.add(todoElement);
+        this.todoElements.add(todoElement);
         return todoElement;
     }
     public List<TodoElement> getAllTodos(){
         return todoElements;
     }
 
-
-
-    public TodoElement getTodo(int id) {
+    public TodoElement getTodo(String id) {
         for (TodoElement element: todoElements) {
-            if(element.getId()==id){
+            if(element.getId().equals(id)){
                 return element;
             }
         }
         return null;
     }
-//    public TodoElement editTodo(TodoElement todoElement, int id) {
-//        for (TodoElement element: todoElements) {
-//            if(!todoElements.get(id).equals(todoElement)){
-//                //todoElements.get(id).description = todoElement.description;
-//                //todoElements.get(id).status = todoElement.status;
-//                todoElements.set(id,todoElement);
-//                return todoElement;
-//            }
-//        }
-//
-//        return null;
-//    }
-    public TodoElement changeStatus(int id) {
-        
-        for (TodoElement element: todoElements) {
-            element.stat
-        if(!todoElements.get(id).equals(todoElement)){
-                //todoElements.get(id).description = todoElement.description;
-                //todoElements.get(id).status = todoElement.status;
-                todoElements.set(id,todoElement);
-                return todoElement;
-            }
+        public TodoElement editTodo(TodoElement todoElement, String id) {
+            int number = this.todoElements.indexOf(getTodo(id));
+            this.todoElements.set(Integer.parseInt(id)-1, todoElement);
+            return todoElement;
         }
 
-        return null;
-    }
-    public String readTodo(int id) {
+    public String readTodo(String id) {
         for (TodoElement element: todoElements) {
-            if(element.getId()==id){
+            if(element.getId().equals(id)){
 
                 return element.description;
             }
@@ -67,9 +46,9 @@ public class TodoRepo {
         return null;
     }
 
-    public boolean deleteTodo(int id) {
+    public boolean deleteTodo(String id) {
         for (TodoElement element: todoElements) {
-            if(element.getId()==id){
+            if(element.getId().equals(id)){
 
                 return todoElements.remove(element);
             }

@@ -14,7 +14,6 @@ public class TodoController {
     }
 
 
-
     @PostMapping("/todo")
     public TodoElement addTodo(@RequestBody TodoElement todoElement){
         return todoService.addTodo(todoElement);
@@ -25,23 +24,19 @@ public class TodoController {
 
     }
     @GetMapping("/todo/{id}")
-    public TodoElement getTodo(@RequestBody @PathVariable int id){
+    public TodoElement getTodo(@RequestBody @PathVariable String id) {
         return todoService.getTodo(id);
+
     }
 
-
-
-//    public String readTodo(@RequestBody @PathVariable int id){
-//        return todoService.readTodo(id);
-//
-//    }
     @PutMapping("/todo/{id}")
-   public TodoElement editTodo(@RequestBody TodoElement todoElement, @PathVariable int id){
+   public TodoElement editTodo(@RequestBody TodoElement todoElement, @PathVariable String id) {
         return todoService.editTodo(todoElement, id);
 
     }
+
     @DeleteMapping ("/todo/{id}")
-    public boolean deleteTodo(@RequestBody @PathVariable int id){
+    public boolean deleteTodo(@RequestBody @PathVariable String id){
         return todoService.deleteTodo(id);
 
     }

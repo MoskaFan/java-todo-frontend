@@ -1,16 +1,26 @@
 package com.example.backend;
 
 
+import java.util.Objects;
 
 public class TodoElement {
 
     String description;
     String status;
-    int id;
+    String id;
 
-    public TodoElement(String description, Status status, int id) {
+    public TodoElement(String id, String description, String status)  {
         this.description = description;
-        this.status = String.valueOf(status);
+        this.status = status;
+        this.id = id;
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,13 +38,5 @@ public class TodoElement {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
