@@ -7,9 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.web.servlet.function.RequestPredicates.contentType;
@@ -73,7 +77,23 @@ class TodoControllerTest {
     }
 
     @Test
-    void getTodo() {
+    void getTodo() throws Exception{
+
+        TodoElement element = new TodoElement("1","args", "open");
+        todoRepo.addTodo(element);
+        todoRepo.getTodo("1");
+        mvc.perform(    MockMvcRequestBuilders
+                        .get("http://localhost:8080/api/todo/{id}", 1)
+                        .accept(MediaType.APPLICATION_JSON))
+                        .andDo(print())
+                        .andExpect(status().isOk())
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                        .andExpect(content().json("""
+                         {"id": "1",
+                         "description": "args",
+                         "status": "open"}
+                         """));
+
     }
 
     @Test
