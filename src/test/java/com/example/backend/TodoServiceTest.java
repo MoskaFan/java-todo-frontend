@@ -17,10 +17,11 @@ class TodoServiceTest {
         //GIVEN
 
         TodoElement element = new TodoElement("1", "args", "open");
-        TodoElement expected = new TodoElement("1", "args", "open");
+        TodoElement expected = new TodoElement("1", "args ", "open");
 
         //When
         when(todoRepo.addTodo(element)).thenReturn(expected);
+        when(todoRepo.addTodo(any())).thenReturn(expected);
         TodoElement result = todoService.addTodo(element);
         //Then
 
