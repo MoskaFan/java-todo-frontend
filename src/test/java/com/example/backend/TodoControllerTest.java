@@ -39,7 +39,12 @@ class TodoControllerTest {
                         "description":"args",
                         "status":"open"
                         }"""))
-                .andExpect(status().isOk());
+                        .andExpect(status().isOk())
+                        .andExpect(content().json("""
+                         {"id": "1",
+                         "description": "args",
+                         "status": "open"}
+                         """));
     }
 
     @Test
